@@ -1,0 +1,125 @@
+	body {
+	font-family: 'Krona One';
+	background: rgb(238, 222, 222);		
+	color: white;
+	box-sizing: border-box;
+}
+.body-border {
+	-webkit-box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.12);
+   	-moz-box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.12);
+    margin: 5% auto;
+    width: 70%;
+    padding: 0;
+    position: relative;
+    background: black;
+    overflow: auto;
+}
+div h1 {
+	font-family: 'Roboto'; 
+	font-size: 45px;
+	text-align: center;
+
+}	
+div small {
+	font-size: 34px;
+}
+h2 {
+	font-size: 34px;
+
+
+}
+/* This class specifies the height and position of the left section. */
+.left-image-bar {
+	float: left;
+	height: 800px;
+	width: 20%;
+	background: url(http://aholein.space/images/chris.jpg);
+	background-position: center;
+	background-size: cover;
+}
+.down-arrow {
+	border-radius: 50%;
+	height: 80px;
+	width: 80px;
+	background-color: white;
+	border: none;
+	font-size: 36px;
+	font-weight: bold;
+	color: grey;
+	float: left;
+	margin-top: 200px;
+}
+.down-arrow:hover {
+	border: 2px grey solid;		
+}
+
+/* This class specifies the height and position of the central section. */
+.main-image {
+	float:left;
+	height: 800px;
+	width: 31%;
+	padding: 30px;	
+	
+}
+.gradient {
+	background: linear-gradient(to top right, rgba(113,96,145,.4), rgba(220,120,123,1),rgba(250,218,174,1));
+	background: -webkit-linear-gradient(to top right, rgba(160, 141, 116,1),rgba(105, 162, 212,1));
+	background: -moz-linear-gradient(to top right, rgba(113,96,145,.4), rgba(220,120,123,1),rgba(250,218,174,1));	
+}
+#contact-image {
+	background: url(http://aholein.space/images/whale.jpg);
+	background-size: cover;
+
+}
+.wide {
+	width: 30%;
+}
+.narrow {
+	width: 15%;
+}
+
+.link-image {
+	height: 50px;
+	width: 50px;
+	border-radius: 20px;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style-type:none;
+	display: inline;
+	padding: 0;
+	margin: 10px;
+}
+.main-bar {
+	color: grey;
+}
+/*@media (max-width: 920px) {
+	.left-image-bar {
+		width: 15%;
+	}
+	.main-image {
+		width:20%;
+	}
+	div h1 {
+	font-size: 34px;
+	}	
+	div small {
+	font-size: 24px;
+	
+	h2 {
+		font-size: small;
+	}
+}*/
+
+.clearfix::after {
+	visibility: hidden;
+	display: block;
+	content: " ";
+	clear: both;
+	height: 0;
+	font-size: 0;
+}

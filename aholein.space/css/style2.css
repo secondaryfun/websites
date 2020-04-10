@@ -1,0 +1,91 @@
+main {
+	margin: 5% auto;
+	position: relative;
+	height: 600px;
+	width: 70%;
+	background: black;
+	overflow: auto;
+	-webkit-box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.35);
+   	-moz-box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.35);
+    font-family: 'Krona One';
+    max-width: 900px;
+}
+
+
+aside {
+	height: 100%;
+	width: 30%;
+	position: relative;
+	float: left;
+}
+
+aside img {
+	height: 100%;
+	max-width: 100%;
+	object-fit: cover;
+}
+
+section {
+	height: 100%;
+	width: 70%;
+	position: relative;
+	float: left;
+}
+
+section h1, h2 {
+	padding: 5px;
+	margin-top: 15px;
+}
+
+section h1 {
+	font-family: 'Roboto'; 
+	font-size: 45px;
+	text-align: center;
+	font-weight: 900;
+	margin-bottom: 15px;
+
+}	
+section small {
+	font-size: 34px;
+}
+section h2 {
+	font-size: 34px;
+	letter-spacingcing: .01em;
+}
+
+section p {
+	border-top: 2px #DD7B7D solid;
+	display: block;
+}
+
+footer {
+	display: none;
+	height: 100%;
+	width: 30%;
+	position: relative;
+	float: left;
+	text-align: center;
+	background: blue;
+}
+
+footer img {
+	height: 100%;
+}
+
+
+
+
+
+
+a img {
+	height: 50px;
+	width: auto;
+	border-radius: 20px;
+}
+
+.gradient {
+	background: linear-gradient(to top right, #9DABBA, rgb(230, 211, 186),rgb(105, 162, 212));
+	background: -webkit-linear-gradient(to top right, #9DABBA, rgb(230, 211, 186),rgb(105, 162, 212));
+	background: -moz-linear-gradient(to top right, #9DABBA, rgb(230, 211, 186),rgb(105, 162, 212));	
+}

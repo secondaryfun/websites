@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Christopher Birkenhagen</title>
+	<link href="https://fonts.googleapis.com/css?family=Krona+One|Roboto&display=swap" rel="stylesheet">
+	<style type="text/css">
+		body {
+		font-family: 'Krona One';
+		background: rgb(238, 222, 222);		
+		color: white;
+		box-sizing: border-box;
+	}
+	.body-border {
+		-webkit-box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.12);
+       	-moz-box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.12);
+        margin: 15px auto;
+        width: 70%;
+        left: 15%;
+        padding: 0;
+        position: fixed;
+        background: black;
+	}
+	div h1 {
+		font-family: 'Roboto'; 
+		font-size: 45px;
+		text-align: center;
+
+	}	
+	div small {
+		font-size: 34px;
+	}
+	h2 {
+		font-size: 34px;
+
+
+	}
+	/* This class specifies the height and position of the left section. */
+	.left-image-bar {
+		float: left;
+		height: 800px;
+		width: 20%;
+		background: url(http://aholein.space/images/chris.jpg);
+		background-position: center;
+		background-size: cover;
+		padding: 0;
+		margin: 0;
+
+	}
+	.down-arrow {
+		border-radius: 50%;
+		height: 80px;
+		width: 80px;
+		background-color: white;
+		border: none;
+		font-size: 36px;
+		font-weight: bold;
+		color: grey;
+		float: left;
+		margin-top: 200px;
+	}
+	.down-arrow:hover {
+		border: 2px grey solid;		
+	}
+	
+	/* This class specifies the height and position of the central section. */
+	.main-image {
+		float:left;
+		height: 800px;
+		width: 31%;
+		padding: 30px;	
+		margin: 0;
+	}
+	.gradient {
+		
+		background: linear-gradient(to top right, rgba(113,96,145,.4), rgba(220,120,123,1),rgba(250,218,174,1));
+  		background: -webkit-linear-gradient(to top right, rgba(113,96,145,.4), rgba(220,120,123,1),rgba(250,218,174,1));
+  		background: -moz-linear-gradient(to top right, rgba(113,96,145,.4), rgba(220,120,123,1),rgba(250,218,174,1));	
+	}
+	#contact-image {
+		background: url(http://aholein.space/images/whale.jpg);
+		background-size: cover;
+
+	}
+	.wide {
+		width: 30%;
+	}
+	.narrow {
+		width: 15%;
+	}
+
+	.link-image {
+		height: 50px;
+		width: 50px;
+		border-radius: 20px;
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		list-style-type:none;
+		display: inline;
+		padding: 0;
+		margin: 10px;
+	}
+	.main-bar {
+		color: grey;
+	}
+	@media (max-width: 920px) {
+		.left-image-bar {
+			width: 15%;
+		}
+		.main-image {
+			width:20%;
+		}
+		div h1 {
+		font-size: 34px;
+		}	
+		div small {
+		font-size: 24px;
+		
+		h2 {
+			font-size: small;
+		}
+	}
+
+	</style>
+</head>
+<body>
+<div class="body-border">
+	<div class="left-image-bar">
+	</div>
+	<div class="main-image gradient" id="middle-image">
+		<h1><small>Hello, my name is </small>Christopher Birkenhagen.</h1>
+		<p class="main-bar">___________</p>
+		<p id="main-description">Entrepreneur. Nomad. Web Developer.</p>
+		
+	</div>
+	<div class="main-image" id="contact-image">
+		<h2>Contact Me</h2>
+		<p class="main-bar">___________</p>
+		<ul>
+			<li><a href="https://linkedin.com/in/birkenhagen/"><img class="link-image" src="http://aholein.space/images/LinkedIn-Logo.png"></a></li>
+			<li><a href="mailto:c.birkenhagen@gmail.com/"><img class="link-image" src="http://aholein.space/images/email.png"></a></li>
+		</ul>
+		
+		<button class="down-arrow" id="main-button"><</button>
+	</div>
+</div>
+<script type="text/javascript">
+  	var toggle = 1;
+  	function toggleClass() {
+  		var element = document.getElementById("contact-image");
+  		if (toggle % 2 == 0) {
+  			element.classList.toggle("wide");
+		}
+		if (toggle % 2 == 1) {
+			element.classList.toggle("narrow");
+		}
+		toggle = toggle + 1;
+  	}
+  	document.getElementById("main-button").addEventListener('click', toggleClass)
+</script>
+</body>
+</html>

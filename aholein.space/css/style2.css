@@ -1,22 +1,24 @@
 main {
-	margin: 5% auto;
-	position: relative;
+	margin-top: 5%;
+	left: 15%;
+	position: fixed;
 	height: 600px;
-	width: 70%;
+	width: 85%;
 	background: black;
 	overflow: auto;
 	-webkit-box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.35);
    	-moz-box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.35);
     box-shadow: 0 42px 33px -6px rgba(0, 0, 0, 0.35);
     font-family: 'Krona One';
-    max-width: 900px;
+	max-width: 900px;
+	color: white;
 }
 
 
 aside {
 	height: 100%;
 	width: 30%;
-	position: relative;
+	/* position: relative; */
 	float: left;
 }
 
@@ -28,7 +30,7 @@ aside img {
 
 section {
 	height: 100%;
-	width: 70%;
+	width: 50%;
 	position: relative;
 	float: left;
 }
@@ -55,12 +57,12 @@ section h2 {
 }
 
 section p {
-	border-top: 2px #DD7B7D solid;
-	display: block;
+	border-top: 2px rgb(123, 221, 216) solid;
+	display: inline-block;
 }
 
 footer {
-	display: none;
+	display: block;
 	height: 100%;
 	width: 30%;
 	position: relative;
@@ -85,7 +87,10 @@ a img {
 }
 
 .gradient {
-	background: linear-gradient(to top right, #9DABBA, rgb(230, 211, 186),rgb(105, 162, 212));
+	/* background: linear-gradient(to top right, #9DABBA, rgb(230, 211, 186),rgb(105, 162, 212));
 	background: -webkit-linear-gradient(to top right, #9DABBA, rgb(230, 211, 186),rgb(105, 162, 212));
-	background: -moz-linear-gradient(to top right, #9DABBA, rgb(230, 211, 186),rgb(105, 162, 212));	
+	background: -moz-linear-gradient(to top right, #9DABBA, rgb(230, 211, 186),rgb(105, 162, 212));	 */
+	background: linear-gradient(to top right, rgba(113,96,145,.4), rgba(220,120,123,1),rgba(250,218,174,1));
+	background: -webkit-linear-gradient(to top right, rgba(160, 141, 116,1),rgba(105, 162, 212,1));
+	background: -moz-linear-gradient(to top right, rgba(113,96,145,.4), rgba(220,120,123,1),rgba(250,218,174,1));	
 }

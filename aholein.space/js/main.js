@@ -1,14 +1,42 @@
-var toggle = 1;
-function toggleClass() {
-	var element = document.getElementById("contact-image");
-	if (toggle % 2 == 0) {
-		element.classList.toggle("wide");
+let statusRightContainer = "narrow";
+
+function makeNarrow( event ) {
+	event.style.width = "20%";
 }
-if (toggle % 2 == 1) {
-	element.classList.toggle("narrow");
+
+function makeWide( event ) {
+	event.style.width = "50%";
 }
-toggle = toggle + 1;
+
+function showContent(event) {
+	event.style.display = "block";
 }
-document.getElementById("").onclick = function () {
-  toggleClass();
-}                                                 
+function flipCoin(element) {
+	element.style.transform = "rotate(.5turn)";
+	element.style.boxShadow = "-2px 2px 2px rgba(0,0,0,.5)";
+}
+
+function resize() {
+	console.log("...resize starting");
+	if (statusRightContainer === "wide") {
+		makeNarrow(rightContainer);
+		makeWide(centerContainer);
+		statusRightContainer = "narrow";
+	} else if (statusRightContainer === "narrow") {
+		makeWide(rightContainer);
+		makeNarrow(centerContainer);
+		statusRightContainer = "wide";
+		showContent(hidden);
+		flipCoin(coin);
+	} else {console.log(statusRightContainer + " Error!")}
+}
+
+
+var rightContainer = document.querySelector(".rightWrapper");
+var centerContainer = document.querySelector(".centerWrapper");
+var magicButton = document.querySelector(".magicButton");
+var hidden = document.querySelector(".hidden");
+var coin = document.querySelector(".magicButton");
+
+magicButton.addEventListener("click",resize);
+// centerContainer.addEventListener("click",resize);

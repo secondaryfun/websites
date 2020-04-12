@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css2?family=Bitter&family=Raleway&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/ninja-match.css">
+	<title>Memory Card Game</title>
+</head>
+<body>
+	<header class="foreground">	
+		<div class="backgroundImg"></div>
+		<div class="foreground clearfix headerTitle">
+			<img src="images/ninjas-red/kaiken-red.png" class="logoImg">
+			<h1>Ninja</h1>
+			<h2>Match</h2>
+		</div>
+	</header>	
+	<nav>
+		<p ><a id="instructionsLink">Instructions</a> 
+			<a id="gameLink">Game</a></p>
+	</nav>
+	<div id="boardRowButtons" class="boardNav">
+		<p ><a id="boardSizeSmallButton">Easy</a> 
+			<a id="boardSizeLargeButton">Hard</a>
+<!-- 			<a id="resetBoardButton">Reset</a></p>
+ -->	</div>
+	<main >
+        <div id="winner" style="display:none">
+            <h2>You Won!</h2>
+        </div>
+		<section id="board-container">
+            <div id="card1"><img class="card" id="card1"></div>
+
+		</section>
+		<section class="clearfix" id="instructionsSection">
+            <h2 id="instructions">Instructions</h2>
+			<img src="images/ninjas-red/hanzo-red.png" class="leftImg card">
+			<img src="images/ninjas-blue/madoushi-blue.png" class="rightImg card">
+			<p>Concentration, also known as Match Match, Memory, Pelmanism, Shinkei-suijaku, Pexeso or simply Pairs, is a card game in which all of the cards are laid face down on a surface and two cards are flipped face up over each turn. The object of the game is to turn over pairs of matching cards.</p>
+        </section>
+        </main>
+        <footer class="foreground">
+		<div class="backgroundImg"></div>
+		<div class="foreground">
+			<p class="rightImg">Designed by <a href="http://secondaryfun.com" target="_blank" class="name">RedCap</a></p>
+			<p class="leftImg">Copyright 2020</p>
+			<p class="license">Art & Characters courtesy of Ninja Division and Ninja All-Stars <a href="https://ninjadivision.com" target="_blank"><img src="images/logos/ninja-all-star-logo.jpg" class="logo"></a></p>
+		</div>
+	</footer>
+</body>
+	<script type="text/javascript" src="js/ninja-match.js"></script>
+</html>

@@ -1,0 +1,88 @@
+JS Backend Planning
+
+Global Variables
+    diff //5, 10, 15 chosen by user, default is 5
+Objects:
+Card 
+    face
+    color
+    location
+
+
+cardDeck - filled with all the cards available to load. Based on images created.
+    currently five ninjas
+        archer
+        hanzo
+        kaiken
+        kunoichi
+        madoushi
+    two colors
+        -blue
+        -red
+
+cardsInPlay - current cards to use in the matchingGame
+    card quantity specified by difficulty selection (easy, medium, hard)
+    cards are chosen in pairs from the cardDeck - 
+    pair = matching face, different color
+    size: 5, 10, 15
+    properties:
+        array of cards
+        pairs = # of pairs needed to win
+
+matchingGame - contains the cards used to populate the board
+    cardsInPlay //array of cards - Contains the current cards in play
+    board //array of locationsContains the current board order
+    firstCard //card object
+    secondCard //card object
+    score = # of pairs clicked on (guesses)
+    
+    methods needed:
+        createBoard //builds divs based on difficulty
+            getBoardSize  //check for page ID
+            create HTML divs x boardSize
+                div backgrounds = card-back.png
+        dealCards //fills the cardsInPlay with qty from diff & randomizes their locations
+            choose face names randomly
+            build cards
+            add cards to cardsInPlay
+
+        showFace //Flips the card face up - receives 1 card
+        showBack //Flips the card face down - receives - card
+        resetBoard //Turns all cards face down, clears firstCard, secondCard
+        showAll //Flips all cards face up
+
+        checkMatch //Compares two cards passed and returns true if face is equal, else false - received 2 cards
+        checkWin //Returns true if all possible matches have been found. Iterates through cardsInPlay for num of pairs
+        declareWinner //asks for name to add to highscores
+            if (no username) asks for name
+            adds user score to highscore list
+            shows highscores 
+
+        flipFirstCard //Performs all actions for first card flip - receives 1 card
+            showFace(div clicked) //flip FirstCard
+            firstCard = card clicked
+            
+        flipSecondCard //Performs all actions for second card flip - receives 1 card
+            showFace(div clicked) //flip secondCard
+            secondCard = card clicked
+            if (checkMatch):
+                if (checkWin):
+                    showAll
+                    declareWinner
+                else 
+                    resetBoard
+
+        restartGame //resets all game parameters at current game size
+
+
+Page Display:
+    different window for each game difficulty
+
+
+responsive:
+    board layout:  
+        rows of 5
+    for pcs': board shrinks based on size of screen
+    for phones: alt ninja head art
+    accessibilty:
+        ensure alt names of cards

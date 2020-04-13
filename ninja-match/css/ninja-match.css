@@ -2,6 +2,9 @@
 	/* display: none; */
 }
 
+#instructionsSection {
+    display:none;
+}
 .boardNav {
 	margin: 0;
 	color: #f15b31;
@@ -20,7 +23,9 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
 }
-
+.card-container {
+    background-color: blue;
+}
 .card {
 	background-image: url("../images/card-front.png");
 	border-radius: 10px;

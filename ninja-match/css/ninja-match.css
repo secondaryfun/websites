@@ -1,0 +1,33 @@
+#boardRowButtons, #boardRow1, #boardRow2, #gameSection {
+	/* display: none; */
+}
+
+#instructionsSection {
+    display:none;
+}
+.boardNav {
+	margin: 0;
+	color: #f15b31;
+	background: rgba(63, 95, 210,1);
+	background: #3452B5;
+}
+
+.boardNav a:hover {
+	border-color: white;
+}
+
+.board-container {
+    max-width: 980px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+}
+.card-container {
+    background-color: blue;
+}
+.card {
+	background-image: url("../images/card-front.png");
+	border-radius: 10px;
+	border: 2px rgb(224, 33, 0) solid;
+}

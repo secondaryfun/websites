@@ -35,7 +35,6 @@
 }
 
 #readyContainer {
-    grid-area: repeat(5fr) / 1fr;
     height: 250px;
     text-align: center;
     grid-column: 3 / 4;

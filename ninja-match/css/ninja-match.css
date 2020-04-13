@@ -17,17 +17,22 @@
 }
 
 .board-container {
+    display: grid;
     max-width: 980px;
     height: 500px;
-    display: grid;
     grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
     gap: 1rem;
 }
 .card-container {
-    background-color: blue;
+    background-image: url("../images/card-front.png");
+    /* height: 100%; */
+    background-size: 100% 100%;
+    border: 2px rgb(224, 33, 0) solid;
+    border-radius: 10px;
+    height: 200px;
 }
 .card {
-	background-image: url("../images/card-front.png");
-	border-radius: 10px;
-	border: 2px rgb(224, 33, 0) solid;
+    object-fit: cover;
+    height: 100%;
 }

@@ -1,9 +1,12 @@
-//      -=Global Variables=-
+//      --==Global Variables==--
+
 let diff = 5;
 board = document.querySelector(".board-container");
-cardClicked = board.querySelector(".card-container");
+startCard = board.querySelector(".start-card");
+readyContainer = document.getElementById("readyContainer");
 
-//      -=Objects=-
+//      --==Objects==--
+
 function card(loc, fac, col) {
     this.location = loc;
     this.face = fac;
@@ -14,30 +17,34 @@ cardDeck = {
     colors: ["red", "blue"]
 }
 
+//      ----------=THE GAME OBJECT=---------
 matchingGame = {
-    //  -=Game Variables=-
+    //  -Game Variables-
     cardsInPlay : [],
     firstCard   : null,
     secondCard  : null,
     score       : 0,
-    //  -=Game Methods=-
-    //  -Builds divs for each card.
+    //  -Game Methods-
+    
+    //  method()-Builds divs for each card.
     createBoard : function() {
         console.log("Starting createBoard. Adding n=" + diff + " cards.")
         boardSize = diff;
         createBoard(boardSize);
+        readyContainer.style.display = "none";
     }
+
+    //  method() - fills cardsInPlay with pairs of qty(diff/2) and randomizes their locations.
+    dealCards   : function() {
+        null
+    }   
+    
 }
 
 
+//      -=Global Functions=-
 
-x = cardClicked.addEventListener("click",function() {
-    console.log("card clicked");
-    matchingGame.createBoard();
-
-})
-
-//Build divs to populate board. Receives # of cards.
+//func() - Build divs to populate board. Receives # of cards.
 //To do:  add animation of dealing cards.
 function createBoard(numCards) {
     console.log("Starting createBoard. Num Cards: " + numCards);
@@ -47,3 +54,11 @@ function createBoard(numCards) {
         board.appendChild(newDiv);
     }
 }
+
+
+//      ---==EVENT LISTENERS==---
+x = startCard.addEventListener("click",function() {
+    console.log("card clicked");
+    matchingGame.createBoard();
+
+})

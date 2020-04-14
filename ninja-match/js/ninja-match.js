@@ -71,20 +71,26 @@ matchingGame = {
         }
     }, // ----------------dealCards---------------------
     //method() - Flip cards to show faces.
-    showface    : function() {
+    showFace    : function() {
         for (i=0; i<diff ; i++) {
             imgCont = document.getElementById("cardContainer-" + i);
-            imgCont.style.backgroundImage = "images/card-front.png";
+            imgCont.style.backgroundImage = 'url("images/card-front.png")';
             image = document.getElementById("ninjaImg-" + i);
             image.src = ("images/ninjas-" + matchingGame.cardsInPlay[i].color + "/" + matchingGame.cardsInPlay[i].face + "-" + matchingGame.cardsInPlay[i].color + ".png");
         }
-    }, //---------showface--------------   
+    }, //---------showface--------------  
+    showBack    : function() {
+        for (i=0; i<diff ; i++) {
+            image = document.getElementById("ninjaImg-" + i);
+            image.src = ("images/card-back.png");
+        }
+    },//----------showBack--------------
 }//--------------END GAME OBJECT--------------
 
-//  ------=====Current Test=====------
-x=document.getElementById("flipCardButton").addEventListener("click",matchingGame.showface);
-
-x = startCard.addEventListener("click",function() {
+//  ------=====Debugger Testing=====------
+y = document.getElementById("showBackButton").addEventListener("click",matchingGame.showBack);
+x = document.getElementById("showFaceButton").addEventListener("click",matchingGame.showFace);
+z = startCard.addEventListener("click",function() {
     console.log("card clicked");
     matchingGame.createBoard();
     test = matchingGame.dealCards();

@@ -61,6 +61,6 @@ main {
     border: 2px blue solid;
     box-shadow: 0px 4px 2px black;
 }
-.start-card {
+.card-front {
     background-image: url(../images/card-front.png);
 }

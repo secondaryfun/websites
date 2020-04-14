@@ -7,8 +7,7 @@ readyContainer = document.getElementById("readyContainer");
 
 //      --==Objects==--
 
-function Card(loc, fac, col) {
-    this.location = loc;
+function Card(fac, col) {
     this.face = fac;
     this.color = col;
 }
@@ -33,34 +32,62 @@ matchingGame = {
         createBoard(boardSize);
         readyContainer.style.display = "none";
     },
-    // method() - fills cardsInPlay with pairs of qty(diff/2)
-    pickPairs : function() {
-        //fill array from deck.faces
+    dealCards  : function() {
+        //---fill array from deck.faces
         let faces = []
         for (i=0;i<cardDeck.faces.length;i++) {
             faces.push(cardDeck.faces[i]);
         }
-        //choose diff/2 faces
-        let numPairs = Math.floor(diff/2);
-        let pairs = [];
-        for (i=0;i<numPairs;i++) {
-            randomIndex = Math.floor(Math.random() * faces.length);
-            pairs.push(faces[randomIndex]);
-            faces.splice(randomIndex, 1);
+        console.log("faces pulled from global deck: " + JSON.stringify(faces));
+        //---randomize the cards
+        faces = shuffle(faces);
+        
+        //---pop off unneeded faces
+        i = Math.ceil(diff / 2);
+        while (faces.length > i) {
+            faces.pop();
+            console.log("while loop going")
         }
-        //create diff.length cards in cardsInPlay
-        for (i=0;i<diff.length;i++) {
-            for (p=0;p<pairs.length;p++) {
-                for (c=0;c<cardDeck.colors.length;c++)
-                cardsInPlay[i] = new card(null,pairs[p],cardDeck.colors[c])
+
+        //create cards
+        for (i=0 ; i<faces.length ; i++) {
+            for (c=0 ; c<cardDeck.colors.length ; c++) {
+            this.cardsInPlay.push(new Card(faces[i],cardDeck.colors[c]));
+            console.log("Card created: " + JSON.stringify(this.cardsInPlay[i]));
             }
         }
-        return cardsInPlay;
-    },
-    //  method() - fills cardsInPlay with pairs of qty(diff/2) and randomizes their locations.
-    dealCards   : function() {
-        dealCards(cardsInPlay, diff)
-    }   
+        //randomize the cards
+        this.cardsInPlay = shuffle(this.cardsInPlay);
+        //load cards into divs
+        for (i=0 ; i < diff ; i++) {
+            container = document.getElementById("cardContainer-" + i);
+            newImg = document.createElement("img");
+            newImg.classList.add("card");
+            newImg.setAttribute("ninjaImg-" + i);
+            newImg.src = ("images/ninjas-" + matchingGame.cardsInPlay[i].color + "/" + matchingGame.cardsInPlay[i].face + "-" + matchingGame.cardsInPlay[i].color + ".png");
+            container.appendChild(newImg);
+        }
+        
+        
+    }
+    
+    // method() - fills cardsInPlay with pairs of qty(diff/2) + one extra if odd #.
+    // dealCards : function() {
+    //     //fill array from deck.faces
+    //     let faces = []
+    //     for (i=0;i<cardDeck.faces.length;i++) {
+    //         faces.push(cardDeck.faces[i]);
+    //     }
+    //     console.log("faces pulled from global deck: " + JSON.stringify(faces));
+    //     //randomize the cards
+    //     faces = shuffle(faces);
+    //     console.log("shuffled faces: " + JSON.stringify(faces));
+        
+    //     //create diff.length cards in cardsInPlay
+
+
+    // },
+     
     
 }//--------------END GAME OBJECT--------------
 
@@ -69,9 +96,10 @@ matchingGame = {
 
 x = startCard.addEventListener("click",function() {
     console.log("card clicked");
-    // matchingGame.createBoard();
-    test = matchingGame.pickPairs();
-    console.log(JSON.stringify(test));
+    matchingGame.createBoard();
+    test = matchingGame.dealCards();
+    console.log("test = " + JSON.stringify(test));
+    console.log("cardsInPlay has been set: " + JSON.stringify(matchingGame.cardsInPlay));
 })
 //----------------------------------------
 
@@ -86,17 +114,11 @@ function createBoard(numCards) {
     for (i=0; i<numCards; i++) {
         newDiv = document.createElement('div');
         newDiv.classList.add("card-container");
+        newDiv.setAttribute("id", "cardContainer-" + i);
         board.appendChild(newDiv);
     }
 }
-function dealCards(cardsInPlay, numCards) {
-    let pairs = [], colors = [];
 
-    for (i=0;i<numCards;i++) {
-        random = Math.floor(Math.random() * numCards);
-
-    }
-}
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   

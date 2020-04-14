@@ -2,7 +2,7 @@
 
 let diff = 5;
 board = document.querySelector(".board-container");
-startCard = board.querySelector(".start-card");
+startCard = document.getElementById("readyContainer");
 readyContainer = document.getElementById("readyContainer");
 
 //      --==Objects==--
@@ -32,7 +32,8 @@ matchingGame = {
         createBoard(boardSize);
         readyContainer.style.display = "none";
     },
-    dealCards  : function() {
+    //  method() - fills cardsInPlay with randomized pairs and populates images into the board.
+    dealCards   : function() {
         //---fill array from deck.faces
         let faces = []
         for (i=0;i<cardDeck.faces.length;i++) {
@@ -58,41 +59,30 @@ matchingGame = {
         }
         //randomize the cards
         this.cardsInPlay = shuffle(this.cardsInPlay);
+        this.cardsInPlay.pop();
         //load cards into divs
         for (i=0 ; i < diff ; i++) {
             container = document.getElementById("cardContainer-" + i);
             newImg = document.createElement("img");
             newImg.classList.add("card");
-            newImg.setAttribute("ninjaImg-" + i);
-            newImg.src = ("images/ninjas-" + matchingGame.cardsInPlay[i].color + "/" + matchingGame.cardsInPlay[i].face + "-" + matchingGame.cardsInPlay[i].color + ".png");
+            newImg.setAttribute("id","ninjaImg-" + i);
+            newImg.src = ("images/card-back.png");
             container.appendChild(newImg);
         }
-        
-        
-    }
-    
-    // method() - fills cardsInPlay with pairs of qty(diff/2) + one extra if odd #.
-    // dealCards : function() {
-    //     //fill array from deck.faces
-    //     let faces = []
-    //     for (i=0;i<cardDeck.faces.length;i++) {
-    //         faces.push(cardDeck.faces[i]);
-    //     }
-    //     console.log("faces pulled from global deck: " + JSON.stringify(faces));
-    //     //randomize the cards
-    //     faces = shuffle(faces);
-    //     console.log("shuffled faces: " + JSON.stringify(faces));
-        
-    //     //create diff.length cards in cardsInPlay
-
-
-    // },
-     
-    
+    }, // ----------------dealCards---------------------
+    //method() - Flip cards to show faces.
+    showface    : function() {
+        for (i=0; i<diff ; i++) {
+            imgCont = document.getElementById("cardContainer-" + i);
+            imgCont.style.backgroundImage = "images/card-front.png";
+            image = document.getElementById("ninjaImg-" + i);
+            image.src = ("images/ninjas-" + matchingGame.cardsInPlay[i].color + "/" + matchingGame.cardsInPlay[i].face + "-" + matchingGame.cardsInPlay[i].color + ".png");
+        }
+    }, //---------showface--------------   
 }//--------------END GAME OBJECT--------------
 
 //  ------=====Current Test=====------
-
+x=document.getElementById("flipCardButton").addEventListener("click",matchingGame.showface);
 
 x = startCard.addEventListener("click",function() {
     console.log("card clicked");

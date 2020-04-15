@@ -5,6 +5,7 @@ board = document.querySelector(".board-container");
 board.style.display = "none";
 startCard = document.getElementById("readyContainer");
 readyContainer = document.getElementById("readyContainer");
+highScores = document.getElementById("highScores");
 
 //      --==Objects==--
 
@@ -27,16 +28,6 @@ function getEventIndex(event) {
     return index;
 }
 
-//func() - Build divs to populate board. Receives # of cards.
-//To do:  add animation of dealing cards.
-function createBoard(numCards) {
-    for (i=0; i<numCards; i++) {
-        newDiv = document.createElement('div');
-        newDiv.classList.add("card-container");
-        newDiv.setAttribute("id", "cardContainer-" + i);
-        board.appendChild(newDiv);
-    }
-}//----------createBoard---------------
 //shuffle the array indexes from received array
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -70,10 +61,17 @@ matchingGame = {
     //  -Game Methods-
     
     //  method()-Builds divs for each card.
+    //To do:  add animation of dealing cards.
     createBoard : function() {
         // console.log("Starting createBoard. Adding n=" + diff + " cards.")
-        createBoard(diff);
+        for (i=0; i<diff; i++) {
+            newDiv = document.createElement('div');
+            newDiv.classList.add("card-container");
+            newDiv.setAttribute("id", "cardContainer-" + i);
+            board.appendChild(newDiv);
+        }
     },//-----------end createBoard----------------
+
     //  method() - fills cardsInPlay with randomized pairs and populates images into the board.
     dealCards   : function() {
         //---fill array from deck.faces
@@ -97,13 +95,14 @@ matchingGame = {
             this.cardsInPlay.push(new Card(faces[i],cardDeck.colors[c]));
             }
         }
+        //randomize the cards
+        this.cardsInPlay = shuffle(this.cardsInPlay);
+        this.cardsInPlay.pop();
+        //add card urls
         for (i=0; i<this.cardsInPlay.length ; i++) {
             this.cardsInPlay[i].url = ("images/ninjas-" +   matchingGame.cardsInPlay[i].color + "/" + matchingGame.cardsInPlay[i].face + "-" + matchingGame.cardsInPlay[i].color + ".png");
             // console.log("Card created: " + JSON.stringify(this.cardsInPlay[i]));
         }   
-        //randomize the cards
-        this.cardsInPlay = shuffle(this.cardsInPlay);
-        this.cardsInPlay.pop();
         //load cards into divs
         for (i=0 ; i < diff ; i++) {
             container = document.getElementById("cardContainer-" + i);
@@ -125,19 +124,29 @@ matchingGame = {
     }, //---------end showAll--------------  
     //method() - resets board back to start.
     resetBoard    : function() {
+        console.log("resetboard starting.")
         for (i=0; i<diff ; i++) {
-            image = document.getElementById("ninjaImg-" + i);
-            image.src = ("images/card-back.png");
+            matchFace = this.cardsInPlay[i].face;
+            if (!this.matches.some(face => face === matchFace)) {
+                image = document.getElementById("ninjaImg-" + i);
+                image.src = ("images/card-back.png");
+            } 
         }
-        firstCard = null;
-        secondCard = null;
+        this.firstCard = null;
+        this.secondCard = null;
+        this.score++;
     },//----------end resetBoard--------------
+    checkCardReset  : function(face,cipFace){
+        console.log("checkCardReset match[i] = " + face + "cipFace = " + cipFace);
+        return face === cipFace;
+    },
+
     fullReset   : function() {
         this.resetBoard();
-        cardsInPlay = [];
-        matches = [];
-        numToWin = [];
-        score = 0;
+        this.cardsInPlay = [];
+        this.matches = [];
+        this.numToWin = [];
+        this.score = 0;
     },//----------end fullReset--------------
     //method() - show face of target card
     showFace    : function(index) {
@@ -166,9 +175,12 @@ matchingGame = {
         } else {return false}
     },//---------- end checkWin--------------
     decWin: function() {
-        document.getElementById("highScores").style.display = "block";
+        highScores.style.display = "block";
         this.showAll();
-        alert("You won in " + score + " moves. Click reset board to play again, or try your hand at Ninja Mastery!")
+        setTimeout(
+            highScores.innerHTML = '<h2>Winner!</h2><p>You won in ' + this.score + ' moves. Best possible is ' + Math.floor(diff/2) + ' moves. Click reset board to play again, or try your hand at Ninja Mastery!</p>',
+            1000
+        )
     },//----------end decWin-----------------
     //method() - flips the card and loads firstCard - receives 1 card
     flipFirst   : function() {
@@ -198,6 +210,7 @@ board.querySelectorAll(".card-container").forEach(item => {
     item.addEventListener("click", event => {
         index = getEventIndex(event);
         console.log("Card clicked: " + index);
+        console.log("firstCard=" + JSON.stringify(matchingGame.firstCard) + " secondCard=" + JSON.stringify(matchingGame.secondCard));
         //check if card is face up
         let imageType = event.target.src.split("-");
         i = imageType.length - 1;
@@ -212,7 +225,7 @@ board.querySelectorAll(".card-container").forEach(item => {
                 if(matchingGame.checkWin()) {
                     matchingGame.decWin();
                 } else{
-                    setTimeout(function(){matchingGame.resetBoard()}, 2000);
+                    setTimeout(function(){matchingGame.resetBoard()}, 1000);
                 }
             }
         }
@@ -229,3 +242,4 @@ board.querySelectorAll(".card-container").forEach(item => {
 //      ---==EVENT LISTENERS==---
 y = document.getElementById("resetBoardButton").addEventListener("click",matchingGame.resetBoard);
 x = document.getElementById("showAllButton").addEventListener("click",matchingGame.showAll);
+document.getElementById("resetBoardButton").addEventListener("click",matchingGame.fullReset);

@@ -28,6 +28,9 @@ main {
     gap: 1rem;
     margin: 0 auto;
 }
+.board-container button {
+    justify-content: center;
+}
 .card-container {
     background-image: url("../images/card-back.png");
     background-size: 100% 100%;

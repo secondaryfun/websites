@@ -26,17 +26,21 @@
 <!-- 			<a id="resetBoardButton">Reset</a></p>
  -->	</div>
 	<main >
-        <div id="winner" style="display:none">
+        <div id="highScores" style="display:none">
             <h2>You Won!</h2>
         </div>
-        
-        
-        
-        
-        
-        <div class="board-container">
-            <div class="card-container"><img class="card" id="card1" src="images/ninjas-red/kaiken-red.png" alt="kaiken-red"></div>
-
+		<div id="debuggerBox" style="display:none">
+			<button id="showAllButton">Show Front</button>
+			<button id="resetBoardButton">Show Back</button>
+		</div>
+		<div id="readyContainer">
+			<div class="card-container card-front">
+				<img class="card" id="card1" src="images/ninjas-red/kaiken-red.png" alt="kaiken-red">
+			</div>
+			<h1>Ready?</h1>
+		</div>
+		<div class="board-container">
+			<button id="resetBoardButton">Reset</button>
         </div>
         
         

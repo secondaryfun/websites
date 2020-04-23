@@ -142,15 +142,16 @@ matchingGame = {
     },
 
     fullReset   : function() {
-        this.resetBoard();
-        this.cardsInPlay = [];
-        this.matches = [];
-        this.numToWin = [];
-        this.score = 0;
+        console.log("fullReset starting.");
+        document.querySelector(".board-container").innerHTML = null;
+        matchingGame.matches = [];
+        matchingGame.cardsInPlay = [];
+        matchingGame.numToWin = [];
+        matchingGame.score = 0;
+        matchingGame.startGame();
     },//----------end fullReset--------------
     //method() - show face of target card
     showFace    : function(index) {
-        // console.log("showFace starting.")
         image = document.getElementById("ninjaImg-" + index);
         image.src = matchingGame.cardsInPlay[index].url;
         image.parentElement.style.backgroundImage = 'url("images/card-front.png")';
@@ -177,10 +178,7 @@ matchingGame = {
     decWin: function() {
         highScores.style.display = "block";
         this.showAll();
-        setTimeout(
-            highScores.innerHTML = '<h2>Winner!</h2><p>You won in ' + this.score + ' moves. Best possible is ' + Math.floor(diff/2) + ' moves. Click reset board to play again, or try your hand at Ninja Mastery!</p>',
-            1000
-        )
+        setTimeout(highScores.innerHTML = '<h2>Winner!</h2><p>You won in ' + this.score + ' moves. Best possible is ' + Math.floor(diff/2) + ' moves. Click reset board to play again, or try your hand at Ninja Mastery!</p>', 1000)
     },//----------end decWin-----------------
     //method() - flips the card and loads firstCard - receives 1 card
     flipFirst   : function() {
@@ -193,44 +191,47 @@ matchingGame = {
         this.showFace(index);
         this.secondCard = this.cardsInPlay[index];
         console.log("flipSecond complete. secondCard is " + JSON.stringify(this.secondCard));
+    },
+    startGame   : function() {
+        matchingGame.createBoard();
+        matchingGame.dealCards();
+        startCard.addEventListener("click",function() {
+            document.querySelector(".board-container").style.display = "flex";
+            document.getElementById("readyContainer").style.display = "none";
+        })
+        board.querySelectorAll(".card-container").forEach(item => {
+            item.addEventListener("click", event => {
+                index = getEventIndex(event);
+                console.log("Card clicked: " + index);
+                console.log("firstCard=" + JSON.stringify(matchingGame.firstCard) + " secondCard=" + JSON.stringify(matchingGame.secondCard));
+                //check if card is face up
+                let imageType = event.target.src.split("-");
+                i = imageType.length - 1;
+                console.log("card clicked" + imageType[i]);
+                // console.log("firstCard is " + matchingGame.firstCard.face)
+                if (imageType[i] === "back.png") {
+                    if (!matchingGame.firstCard) {
+                        matchingGame.flipFirst(index);
+                    } else {
+                        matchingGame.flipSecond(index);
+                        matchingGame.checkMatch();
+                        if(matchingGame.checkWin()) {
+                            matchingGame.decWin();
+                        } else{
+                            setTimeout(function(){matchingGame.resetBoard()}, 1000);
+                        }
+                    }
+                }
+            });
+        })
+
     }
 
 }//--------------END GAME OBJECT--------------
 
 //  ------=====Game Play=====------
 
-
-matchingGame.createBoard();
-matchingGame.dealCards();
-startCard.addEventListener("click",function() {
-    document.querySelector(".board-container").style.display = "flex";
-    document.getElementById("readyContainer").style.display = "none";
-})
-board.querySelectorAll(".card-container").forEach(item => {
-    item.addEventListener("click", event => {
-        index = getEventIndex(event);
-        console.log("Card clicked: " + index);
-        console.log("firstCard=" + JSON.stringify(matchingGame.firstCard) + " secondCard=" + JSON.stringify(matchingGame.secondCard));
-        //check if card is face up
-        let imageType = event.target.src.split("-");
-        i = imageType.length - 1;
-        console.log("card clicked" + imageType[i]);
-        // console.log("firstCard is " + matchingGame.firstCard.face)
-        if (imageType[i] === "back.png") {
-            if (!matchingGame.firstCard) {
-                matchingGame.flipFirst(index);
-            } else {
-                matchingGame.flipSecond(index);
-                matchingGame.checkMatch();
-                if(matchingGame.checkWin()) {
-                    matchingGame.decWin();
-                } else{
-                    setTimeout(function(){matchingGame.resetBoard()}, 1000);
-                }
-            }
-        }
-    });
-})
+matchingGame.startGame();
 
 
 //----------------------------------------
@@ -240,6 +241,4 @@ board.querySelectorAll(".card-container").forEach(item => {
 
 
 //      ---==EVENT LISTENERS==---
-y = document.getElementById("resetBoardButton").addEventListener("click",matchingGame.resetBoard);
-x = document.getElementById("showAllButton").addEventListener("click",matchingGame.showAll);
 document.getElementById("resetBoardButton").addEventListener("click",matchingGame.fullReset);
